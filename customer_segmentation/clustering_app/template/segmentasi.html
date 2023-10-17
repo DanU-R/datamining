@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Segmentation</title>
+</head>
+<body>
+    <h1>Customer Segmentation</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Cluster</button>
+    </form>
+
+    <br>
+
+    {% if clusters %}
+        <h2>Segmentation Results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cluster</th>
+                    <th>Average Age</th>
+                    <th>Average Income</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cluster, values in clusters.iterrows %}
+                    <tr>
+                        <td>{{ cluster }}</td>
+                        <td>{{ values.age }}</td>
+                        <td>{{ values.income }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
