@@ -56,7 +56,7 @@ ROOT_URLCONF = 'customer_segmentation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'clustering_app/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

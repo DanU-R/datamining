@@ -1,11 +1,16 @@
 from django.shortcuts import render
-from .forms import ClusterForm
+# from .forms import ClusterForm
+from .form import ClusterForm
 from sklearn.cluster import KMeans
 import pandas as pd
 from .models import Customer
 
+def index(request):
+    return render(request, 'index.html')
+
 def customer_segmentation(request):
-    forms = ClusterForm(request.POST or None)
+    # forms = ClusterForm(request.POST or None)
+    form = ClusterForm(request.POST or None)
     clusters = None
 
     if request.method == 'POST' and form.is_valid():
@@ -30,4 +35,5 @@ def customer_segmentation(request):
         # Hitung nilai rata-rata dalam setiap cluster
         clusters = data.groupby('cluster').mean()
 
-    return render(request, 'clustering_app/segmentation.html', {'form': form, 'clusters': clusters})
+    # return render(request, 'clustering_app/segmentation.html', {'form': form, 'clusters': clusters})
+    return render(request, 'segmentasi.html', {'form': form, 'clusters': clusters})
